@@ -1,33 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Getting Started: Serving Web Content</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript">
-
-    function updateVersion(productId)
-    {
-        alert(productId);
-    }
-    </script>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<form>
-	<input id="className" type="text"/>
-    <input id="searchType" type="checkbox"/>
+<form action="#" th:action="@{/classFinder/result}" th:object="${classStore}" method="post">
 
-    <select id="productCombo" onchange="updateVersion(this.options[this.selectedIndex].text);">
-        <option value="NONE" label="--- Select ---" />
-        <option th:each="product : ${productList}" th:value="${product.id}" th:text="${product.label}" >Wireframe</option>
-    </select>
+    <h1>Class Finder</h1><br/><br/>
 
-    <select id="versionCombo">
-        <option value="NONE" label="--- Select ---" />
-    </select>
+    ClassName: <input id="className" th:field="*{className}" type="text"/> <br/>
+    FullClassName: <input id="fullClassName" th:field="*{fullClassName}" type="text"/> <br/>
 
-    <input type="button" value="Search"/>
+    Product: <select id="productCombo" th:field="*{productId}">
+    <option value="NONE" label="--- Select ---" />
+    <option th:each="product : ${productList}" th:value="${product.id}" th:text="${product.label}" ></option>
+</select> <br/>
 
+    Version: <select id="versionCombo" th:field="*{productVersion}">
+    <option value="NONE" label="--- Select ---" />
+    <option th:each="version : ${versionList}" th:value="${version.number}" th:text="${version.number}"  ></option>
+</select> <br/>
+
+    <input type="submit" value="Search"/>
 </form>
 
 
