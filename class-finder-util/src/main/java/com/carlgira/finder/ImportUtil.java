@@ -48,6 +48,12 @@ public class ImportUtil implements CommandLineRunner {
                     return;
                 }
             }
+            Version v = new Version();
+            v.setNumber(versionNumber);
+            List<Version> versions1 = product.getVersions();
+            versions1.add(v);
+            product.setVersions(versions1);
+            this.productRepository.saveAndFlush(product);
         }
         else{
             product = new Product();
