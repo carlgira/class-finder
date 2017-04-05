@@ -1,30 +1,30 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+    <title>Class Finder</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Result</h1>
-<p th:text="'id: ' + ${classStore.className}" />
-<p th:text="'content: ' + ${classStore.fullClassName}" />
-<p th:text="'content: ' + ${classStore.productId}" />
-<p th:text="'content: ' + ${classStore.productVersion}" />
+<center>
+    <h1><p style="color: red;"> Result</p></h1>
+    <p th:text="${classStore.className} + ' ' + ${classStore.fullClassName}" />
+    <p th:text="${classStore.productId} + ' ' + ${classStore.productVersion}" />
 
-<table border="1">
-    <tr>
-        <td>Full Class Name</td>
-        <td>Jar Name</td>
-        <td>Jar Path</td>
-    </tr>
-    <th:block th:each="classSt : ${classStores}">
+    <table class="table table-striped">
         <tr>
-            <td th:text="${classSt.fullClassName}"></td>
-            <td th:text="${classSt.jar.name}"></td>
-            <td th:text="${classSt.jar.path}"></td>
+            <td><b>Full Class Name</b></td>
+            <td><b>Jar Name</b></td>
+            <td><b>Jar Path</b></td>
         </tr>
-    </th:block>
-</table>
-
+        <th:block th:each="classSt : ${classStores}">
+            <tr>
+                <td th:text="${classSt.fullClassName}"></td>
+                <td th:text="${classSt.jar.name}"></td>
+                <td th:text="${classSt.jar.path}"></td>
+            </tr>
+        </th:block>
+    </table>
+</center>
 </body>
 </html>

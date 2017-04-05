@@ -1,30 +1,42 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+    <title>Oracle Class Finder</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<center>
+    <h1><p style="color: red;">Class Finder</p></h1><br/><br/>
+    <form action="#" th:action="@{/classFinder/result}" th:object="${classStore}" method="post" style="width: 500px;">
 
-<form action="#" th:action="@{/classFinder/result}" th:object="${classStore}" method="post">
+        <div class="form-group">
+            <label>ClassName</label>
+            <input id="className" class="form-control" th:field="*{className}" type="text"/>
+        </div>
+        <div class="form-group">
+            <label>FullClassName</label>
+            <input id="fullClassName" class="form-control" th:field="*{fullClassName}" type="text"/>
+        </div>
+        <div class="form-group">
+            <label>Product</label>
+            <select id="productCombo" class="form-control" th:field="*{productId}">
+                <option value="NONE" label="--- Select ---" />
+                <option th:each="product : ${productList}" th:value="${product.id}" th:text="${product.label}" ></option>
+            </select>
+        </div>
 
-    <h1>Class Finder</h1><br/><br/>
+        <div class="form-group">
+            <label>Version</label>
+            <select id="versionCombo" class="form-control" th:field="*{productVersion}">
+                <option value="NONE" label="--- Select ---" />
+                <option th:each="version : ${versionList}" th:value="${version.number}" th:text="${version.number}"  ></option>
+            </select>
+        </div>
 
-    ClassName: <input id="className" th:field="*{className}" type="text"/> <br/>
-    FullClassName: <input id="fullClassName" th:field="*{fullClassName}" type="text"/> <br/>
-
-    Product: <select id="productCombo" th:field="*{productId}">
-    <option value="NONE" label="--- Select ---" />
-    <option th:each="product : ${productList}" th:value="${product.id}" th:text="${product.label}" ></option>
-</select> <br/>
-
-    Version: <select id="versionCombo" th:field="*{productVersion}">
-    <option value="NONE" label="--- Select ---" />
-    <option th:each="version : ${versionList}" th:value="${version.number}" th:text="${version.number}"  ></option>
-</select> <br/>
-
-    <input type="submit" value="Search"/>
-</form>
+        <input type="submit" class="btn btn-danger" value="Search"/><br/>
+    </form>
+</center>
 
 
 </body>

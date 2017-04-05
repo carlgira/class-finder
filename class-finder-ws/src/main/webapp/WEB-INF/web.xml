@@ -9,10 +9,12 @@
     </context-param>
 
     <!--
+    Comment or uncomment for Weblogic Server
+    -->
     <listener>
         <listener-class>org.springframework.boot.legacy.context.web.SpringBootContextLoaderListener</listener-class>
     </listener>
-    -->
+
 
     <servlet>
         <servlet-name>appServlet</servlet-name>
